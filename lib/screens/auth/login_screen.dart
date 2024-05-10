@@ -92,13 +92,12 @@ class _LoginState extends State<Login> {
                   child: GestureDetector(
                     onTap: () async{
                       if(authProvider.userNameController.text.toString().isEmpty){
-                        showSnackBar(context,"Enter the userName");
+                        showSnackBar(context,"UserName is empty");
                       }
                       else{
                         final SharedPreferences prefs = await SharedPreferences.getInstance();
                         await prefs.setString('sharedPreferenceUserName',authProvider.userNameController.text.toString());
                         GoRouter.of(context).go('/home');
-                        print("login");
                       }
                     },
                     child: Container(
