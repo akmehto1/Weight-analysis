@@ -32,7 +32,7 @@ class _SwitchUserProfileState extends State<SwitchUserProfile> {
         actions: [
           IconButton(onPressed: (){
             GoRouter.of(context).go('/');
-          }, icon:Icon(Icons.logout))
+          }, icon:const Icon(Icons.logout))
         ],
       ),
 
@@ -40,14 +40,14 @@ class _SwitchUserProfileState extends State<SwitchUserProfile> {
         child: ListView.builder(
           itemCount: distinctUserName.length,
           itemBuilder: (BuildContext context, int index) {
-            return ListItem(distinctUserName[index]);
+            return listItem(distinctUserName[index]);
           },
         ),
       ),
     );
   }
 
-  Widget ListItem(String userName) {
+  Widget listItem(String userName) {
     return GestureDetector(
       onTap: () async {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
