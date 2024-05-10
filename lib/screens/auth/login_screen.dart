@@ -97,6 +97,7 @@ class _LoginState extends State<Login> {
                       else{
                         final SharedPreferences prefs = await SharedPreferences.getInstance();
                         await prefs.setString('sharedPreferenceUserName',authProvider.userNameController.text.toString());
+                        authProvider.userNameController.clear();
                         GoRouter.of(context).go('/home');
                       }
                     },
