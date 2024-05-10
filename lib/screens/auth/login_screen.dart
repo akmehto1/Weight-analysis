@@ -1,4 +1,5 @@
 import 'package:assignment/providers/auth_provider.dart';
+import 'package:assignment/shared/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -90,11 +91,15 @@ class _LoginState extends State<Login> {
                 Center(
                   child: GestureDetector(
                     onTap: () async{
-                      final SharedPreferences prefs = await SharedPreferences.getInstance();
-                      await prefs.setString('sharedPreferenceUserName',authProvider.userNameController.text.toString());
-                      GoRouter.of(context).go('/home');
-                      print("login");
-
+                      if(authProvider.userNameController.text.toString().isEmpty){
+                        showSnackBar(context,"Enter the userName");
+                      }
+                      else{
+                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setString('sharedPreferenceUserName',authProvider.userNameController.text.toString());
+                        GoRouter.of(context).go('/home');
+                        print("login");
+                      }
                     },
                     child: Container(
                       width: 200,
