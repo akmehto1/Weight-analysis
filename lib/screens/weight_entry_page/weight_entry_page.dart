@@ -76,6 +76,7 @@ class _WeightEntryPageState extends State<WeightEntryPage> {
     return ElevatedButton(
       onPressed: () async {
         String weightText = provider.weightController.text;
+        provider.weightController.clear();
         String monthName = provider.selectedMonth.toString();
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         final String? userName = prefs.getString('sharedPreferenceUserName');
